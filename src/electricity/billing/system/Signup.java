@@ -109,7 +109,7 @@ public class Signup extends JFrame implements ActionListener{
             //making sql query
             try{
                 Conn c=new Conn();  //establishing connection with mysql by creating conn class and making its object here
-                String query="insert into login values('"+smeter+"', '"+susername+"', '"+sname+"', '"+pass+"','"+acctype+"' )"; //defining query
+                String query="insert into login values('"+smeter+"', '"+susername+"', '"+sname+"', '"+pass+"','"+acctype+"' )"; //defining query (DML)
                 
                 c.s.executeUpdate(query); //updating(adding new values) query
                

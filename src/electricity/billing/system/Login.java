@@ -3,10 +3,13 @@ package electricity.billing.system;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class Login extends JFrame implements ActionListener{
     
     JButton login, cancel, signup;
+    JTextField username, password;
+    Choice logginin;
     Login(){
         super("Login Page"); //heading of page
         getContentPane().setBackground(Color.WHITE);  //for bg color
@@ -16,7 +19,7 @@ public class Login extends JFrame implements ActionListener{
         lblusername.setBounds(300,20,100,20);
         add(lblusername);
         
-        JTextField username= new JTextField(); //textfield
+        username= new JTextField(); //textfield
         username.setBounds(400,20,150,20);
         add(username);
         
@@ -24,7 +27,7 @@ public class Login extends JFrame implements ActionListener{
         lblpassword.setBounds(300,60,100,20);
         add(lblpassword);
         
-        JTextField password= new JTextField(); //textfield
+        password= new JTextField(); //textfield
         password.setBounds(400,60,150,20);
         add(password);
         
@@ -32,7 +35,7 @@ public class Login extends JFrame implements ActionListener{
         loggininas.setBounds(300,100,100,20);
         add(loggininas);
         
-        Choice logginin=new Choice(); //select dropdown option
+        logginin=new Choice(); //select dropdown option
         logginin.add("Admin"); //dropdown fiels
         logginin.add("Customer");
         logginin.setBounds(400, 100, 150, 20);
@@ -74,7 +77,28 @@ public class Login extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource()== login){
+            String susername=username.getText();
+            String spassword=password.getText();
+            String user=logginin.getSelectedItem();
             
+            try{
+                Conn c=new Conn();
+                String query="select * from login where username = '"+susername+"' and password = '"+spassword+"' and user + '"+user+"'";  //DDL query
+                
+                ResultSet re= c.s.executeQuery(query); //importing sql package, all the data after executing query will be stored in this resultset
+                
+                if(re.next()){ //if the entry matches 
+                    setVisible(false);
+                    new Project();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid Login"); //when the query doesnt execute or the entry doesnt matches
+                    username.setText("");
+                    password.setText("");
+                }
+                
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }else if(ae.getSource() == cancel){
             setVisible(false);
         }else if(ae.getSource() == signup){

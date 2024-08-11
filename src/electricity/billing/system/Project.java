@@ -3,6 +3,7 @@ package electricity.billing.system;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class Project extends JFrame {
     
@@ -15,6 +16,170 @@ public class Project extends JFrame {
         JLabel image=new JLabel(i3);
         add(image);
         
+        JMenuBar mb= new JMenuBar(); //adds menu bar ontop of frame
+        setJMenuBar(mb);
+        
+        JMenu master=new JMenu("Master"); //creates menu bar items
+        master.setForeground(Color.BLUE);
+        mb.add(master);
+        
+        JMenuItem newcustomer=new JMenuItem("New Customer"); //menu items inside the main menu bar items
+        newcustomer.setFont(new Font("monospaced", Font.PLAIN, 12));
+        newcustomer.setBackground(Color.WHITE);
+        ImageIcon icon1=new ImageIcon(ClassLoader.getSystemResource("icon/icon1.png"));
+        Image image1=icon1.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        newcustomer.setIcon(new ImageIcon(image1));
+        newcustomer.setMnemonic('D'); //for adding keyboard shortcuts
+        newcustomer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+D
+        master.add(newcustomer); //adding newcustomer menu item inside master field
+       
+        
+        JMenuItem customerdetails=new JMenuItem("Customer Details"); //menu items inside the main menu bar items
+        customerdetails.setFont(new Font("monospaced", Font.PLAIN, 12));
+        customerdetails.setBackground(Color.WHITE);
+        ImageIcon icon2=new ImageIcon(ClassLoader.getSystemResource("icon/icon2.png"));
+        Image image2=icon2.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        customerdetails.setIcon(new ImageIcon(image2));
+        customerdetails.setMnemonic('M'); //for adding keyboard shortcuts
+        customerdetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+M
+        master.add(customerdetails);
+        
+        
+        JMenuItem depositdetails=new JMenuItem("Deposit Details"); //menu items inside the main menu bar items
+        depositdetails.setFont(new Font("monospaced", Font.PLAIN, 12));
+        depositdetails.setBackground(Color.WHITE);
+        ImageIcon icon3=new ImageIcon(ClassLoader.getSystemResource("icon/icon3.png"));
+        Image image3=icon3.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        depositdetails.setIcon(new ImageIcon(image3));
+        depositdetails.setMnemonic('N'); //for adding keyboard shortcuts
+        depositdetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+N
+        master.add(depositdetails);
+        
+        
+        JMenuItem calculatebills=new JMenuItem("Calculate Bill"); //menu items inside the main menu bar items
+        calculatebills.setFont(new Font("monospaced", Font.PLAIN, 12));
+        calculatebills.setBackground(Color.WHITE);
+        ImageIcon icon4=new ImageIcon(ClassLoader.getSystemResource("icon/icon5.png"));
+        Image image4=icon4.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        calculatebills.setIcon(new ImageIcon(image4));
+        calculatebills.setMnemonic('B'); //for adding keyboard shortcuts
+        calculatebills.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+B
+        master.add(calculatebills);
+        
+        
+        JMenu info=new JMenu("Information"); //creates menu bar items
+        info.setForeground(Color.RED);
+        mb.add(info);
+        
+        
+        JMenuItem updateinfo=new JMenuItem("Update Information"); //menu items inside the main menu bar items
+        updateinfo.setFont(new Font("monospaced", Font.PLAIN, 12));
+        updateinfo.setBackground(Color.WHITE);
+        ImageIcon icon5=new ImageIcon(ClassLoader.getSystemResource("icon/icon4.png"));
+        Image image5=icon5.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        updateinfo.setIcon(new ImageIcon(image5));
+        updateinfo.setMnemonic('P'); //for adding keyboard shortcuts
+        updateinfo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+P
+        info.add(updateinfo); //adding newcustomer menu item inside master field
+        
+        
+        JMenuItem viewinfo=new JMenuItem("View Information"); //menu items inside the main menu bar items
+        viewinfo.setFont(new Font("monospaced", Font.PLAIN, 12));
+        viewinfo.setBackground(Color.WHITE);
+        ImageIcon icon6=new ImageIcon(ClassLoader.getSystemResource("icon/icon6.png"));
+        Image image6=icon6.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        viewinfo.setIcon(new ImageIcon(image6));
+        viewinfo.setMnemonic('V'); //for adding keyboard shortcuts
+        viewinfo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+V
+        info.add(viewinfo);
+        
+        
+        JMenu user=new JMenu("User"); //creates menu bar items
+        user.setForeground(Color.BLUE);
+        mb.add(user);
+        
+        
+        JMenuItem paybill=new JMenuItem("Pay Bill"); //menu items inside the main menu bar items
+        paybill.setFont(new Font("monospaced", Font.PLAIN, 12));
+        paybill.setBackground(Color.WHITE);
+        ImageIcon icon7=new ImageIcon(ClassLoader.getSystemResource("icon/icon7.png"));
+        Image image7=icon7.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        paybill.setIcon(new ImageIcon(image7));
+        paybill.setMnemonic('R'); //for adding keyboard shortcuts
+        paybill.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+R
+        user.add(paybill); //adding newcustomer menu item inside master field
+        
+        
+        JMenuItem billdetails=new JMenuItem("Bill Details"); //menu items inside the main menu bar items
+        billdetails.setFont(new Font("monospaced", Font.PLAIN, 12));
+        billdetails.setBackground(Color.WHITE);
+        ImageIcon icon8=new ImageIcon(ClassLoader.getSystemResource("icon/icon8.png"));
+        Image image8=icon8.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        billdetails.setIcon(new ImageIcon(image8));
+        billdetails.setMnemonic('B'); //for adding keyboard shortcuts
+        billdetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+B
+        user.add(billdetails);
+        
+        
+        JMenu report=new JMenu("Report"); //creates menu bar items
+        report.setForeground(Color.RED);
+        mb.add(report);
+        
+        
+        JMenuItem generatebill=new JMenuItem("Generate Bill"); //menu items inside the main menu bar items
+        generatebill.setFont(new Font("monospaced", Font.PLAIN, 12));
+        generatebill.setBackground(Color.WHITE);
+        ImageIcon icon9=new ImageIcon(ClassLoader.getSystemResource("icon/icon9.png"));
+        Image image9=icon9.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        generatebill.setIcon(new ImageIcon(image9));
+        generatebill.setMnemonic('G'); //for adding keyboard shortcuts
+        generatebill.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+G
+        report.add(generatebill); //adding newcustomer menu item inside master field
+        
+        
+        JMenu utility=new JMenu("Utility"); //creates menu bar items
+        utility.setForeground(Color.BLUE);
+        mb.add(utility);
+        
+        
+        JMenuItem notepad=new JMenuItem("NotePad"); //menu items inside the main menu bar items
+        notepad.setFont(new Font("monospaced", Font.PLAIN, 12));
+        notepad.setBackground(Color.WHITE);
+        ImageIcon icon10=new ImageIcon(ClassLoader.getSystemResource("icon/icon12.png"));
+        Image image10=icon10.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        notepad.setIcon(new ImageIcon(image10));
+        notepad.setMnemonic('T'); //for adding keyboard shortcuts
+        notepad.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+T
+        utility.add(notepad);
+        
+        
+        JMenuItem calculator=new JMenuItem("Calculator"); //menu items inside the main menu bar items
+        calculator.setFont(new Font("monospaced", Font.PLAIN, 12));
+        calculator.setBackground(Color.WHITE);
+        ImageIcon icon11=new ImageIcon(ClassLoader.getSystemResource("icon/icon9.png"));
+        Image image11=icon11.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        calculator.setIcon(new ImageIcon(image11));
+        calculator.setMnemonic('C'); //for adding keyboard shortcuts
+        calculator.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+C
+        utility.add(calculator);
+        
+        
+        JMenu mexit=new JMenu("Exit"); //creates menu bar items
+        mexit.setForeground(Color.RED);
+        mb.add(mexit);
+        
+        
+        JMenuItem exit=new JMenuItem("Exit"); //menu items inside the main menu bar items
+        exit.setFont(new Font("monospaced", Font.PLAIN, 12));
+        exit.setBackground(Color.WHITE);
+        ImageIcon icon12=new ImageIcon(ClassLoader.getSystemResource("icon/icon11.png"));
+        Image image12=icon12.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        exit.setIcon(new ImageIcon(image12));
+        exit.setMnemonic('X'); //for adding keyboard shortcuts
+        exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+X
+        mexit.add(exit);
+        
+        setLayout(new FlowLayout());
         
         setVisible(true);
     }
