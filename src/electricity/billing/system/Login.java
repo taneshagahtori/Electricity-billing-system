@@ -83,7 +83,7 @@ public class Login extends JFrame implements ActionListener{
             
             try{
                 Conn c=new Conn();
-                String query="select * from login where username = '"+susername+"' and password = '"+spassword+"' and user + '"+user+"'";  //DDL query
+                String query="select * from login where username = '"+susername+"' and password = '"+spassword+"' and user = '"+user+"'";  //DDL query
                 
                 ResultSet re= c.s.executeQuery(query); //importing sql package, all the data after executing query will be stored in this resultset
                 
