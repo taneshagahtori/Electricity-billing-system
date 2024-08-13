@@ -20,10 +20,10 @@ public class MeterInfo extends JFrame implements ActionListener {
         p.setBackground(new Color(173, 216, 230));
         add(p);
         
-        JLabel meterinfo= new JLabel("Meter Information");
-        meterinfo.setBounds(180, 10, 200, 25);
-        meterinfo.setFont(new Font("Tahoma", Font.PLAIN, 24));
-        p.add(meterinfo);
+        JLabel heading= new JLabel("Meter Information");
+        heading.setBounds(180, 10, 200, 25);
+        heading.setFont(new Font("Tahoma", Font.PLAIN, 24));
+        p.add(heading);
         
         JLabel lblmeternumber= new JLabel("Meter Number");
         lblmeternumber.setBounds(100, 80, 100, 20);
