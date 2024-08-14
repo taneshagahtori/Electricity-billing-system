@@ -11,10 +11,10 @@ public class CalculateBill extends JFrame implements ActionListener {
     JTextField tfunits; 
     JLabel lblname, lbladdresss;
     JButton submit, cancel;
-    Choice meterno;
+    Choice meterno, cmonth;
     CalculateBill(){
         setSize(700, 500);
-        setLocation(400, 200);
+        setLocation(400, 150);
         
         JPanel p=new JPanel(); //creates panel inside the frame
         p.setLayout(null);
@@ -102,16 +102,32 @@ public class CalculateBill extends JFrame implements ActionListener {
         JLabel lblmonth= new JLabel("Month");
         lblmonth.setBounds(100, 240, 100, 20);
         p.add(lblmonth);
+        
+        cmonth= new Choice();
+        cmonth.setBounds(240,240, 200, 20);
+        cmonth.add("January");
+        cmonth.add("February");
+        cmonth.add("March");
+        cmonth.add("April");
+        cmonth.add("May");
+        cmonth.add("June");
+        cmonth.add("July");
+        cmonth.add("August");
+        cmonth.add("September");
+        cmonth.add("October");
+        cmonth.add("Novemeber");
+        cmonth.add("Decemeber");
+        p.add(cmonth);
       
-        submit=new JButton("Next");
-        submit.setBounds(120, 390, 100, 25);
+        submit=new JButton("Submit");
+        submit.setBounds(120, 350, 100, 25);
         submit.setBackground(Color.BLACK);
         submit.setForeground(Color.WHITE);
         submit.addActionListener(this);
         p.add(submit);
         
         cancel=new JButton("Cancel");
-        cancel.setBounds(250, 390, 100, 25);
+        cancel.setBounds(250, 350, 100, 25);
         cancel.setBackground(Color.BLACK);
         cancel.setForeground(Color.WHITE);
         cancel.addActionListener(this);
@@ -133,32 +149,44 @@ public class CalculateBill extends JFrame implements ActionListener {
     
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == submit){
-            String name= tfname.getText();
-            String meter=lblmeter.getText();
-            String address=tfaddress.getText();
-            String city=tfcity.getText();
-            String state=tfstate.getText();
-            String email=tfstate.getText();
-            String phone= tfphone.getText();
+            String meter=meterno.getSelectedItem();
+            String units=tfunits.getText();
+            String month=cmonth.getSelectedItem();
+         
+            int totalbill=0;
+            int unit_consumed=Integer.parseInt(units);
             
-            String query1="insert into customer values('"+name+"', '"+meter+"', '"+address+"', '"+city+"', '"+state+"', '"+email+"', '"+phone+"')";
-            String query2="insert into login values('"+meter+"','', '"+name+"', '', '')";
+            String query="select * from tax";
+            
             
             try{
                 Conn c=new Conn();
-                c.s.executeUpdate(query1);
-                c.s.executeUpdate(query2);
+                ResultSet rs= c.s.executeQuery(query);
                 
-                JOptionPane.showMessageDialog(null, "Customer Details Added Successfully");
-                setVisible(false);
-                
-                //new frame
-                new MeterInfo(meter);
+                while(rs.next()){ //calculating total tax
+                    totalbill += unit_consumed * Integer.parseInt(rs.getString("cost_per_unit"));
+                    totalbill += Integer.parseInt(rs.getString("meter_rent"));
+                    totalbill += Integer.parseInt(rs.getString("service_charge"));
+                    totalbill += Integer.parseInt(rs.getString("service_tax"));
+                    totalbill += Integer.parseInt(rs.getString("swacch_bharat_cess"));
+                    totalbill += Integer.parseInt(rs.getString("fixed_tax"));
+                }
             }
             catch(Exception e){
                 e.printStackTrace();
             }
-            
+            String query2 = "insert into bill values('"+meter+"', '"+month+"', '"+units+"', '"+totalbill+"', 'Not Paid')";
+            try{
+                Conn c= new Conn();
+                c.s.executeUpdate(query2);
+                
+                JOptionPane.showMessageDialog(null, "Customer Bill Updated Successfully");
+                setVisible(false);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        
         }else{
             setVisible(false);
         }

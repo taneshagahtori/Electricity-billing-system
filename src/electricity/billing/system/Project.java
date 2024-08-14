@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Project extends JFrame {
+public class Project extends JFrame implements ActionListener {
     
     Project(){
         setExtendedState(JFrame.MAXIMIZED_BOTH); //makes frame of entire height and width
@@ -30,6 +30,7 @@ public class Project extends JFrame {
         Image image1=icon1.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         newcustomer.setIcon(new ImageIcon(image1));
         newcustomer.setMnemonic('D'); //for adding keyboard shortcuts
+        newcustomer.addActionListener(this);
         newcustomer.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+D
         master.add(newcustomer); //adding newcustomer menu item inside master field
        
@@ -41,6 +42,7 @@ public class Project extends JFrame {
         Image image2=icon2.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         customerdetails.setIcon(new ImageIcon(image2));
         customerdetails.setMnemonic('M'); //for adding keyboard shortcuts
+        customerdetails.addActionListener(this);
         customerdetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+M
         master.add(customerdetails);
         
@@ -52,6 +54,7 @@ public class Project extends JFrame {
         Image image3=icon3.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         depositdetails.setIcon(new ImageIcon(image3));
         depositdetails.setMnemonic('N'); //for adding keyboard shortcuts
+        depositdetails.addActionListener(this);
         depositdetails.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+N
         master.add(depositdetails);
         
@@ -63,6 +66,7 @@ public class Project extends JFrame {
         Image image4=icon4.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         calculatebills.setIcon(new ImageIcon(image4));
         calculatebills.setMnemonic('B'); //for adding keyboard shortcuts
+        calculatebills.addActionListener(this);
         calculatebills.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+B
         master.add(calculatebills);
         
@@ -183,6 +187,23 @@ public class Project extends JFrame {
         
         setVisible(true);
     }
+    
+    public void actionPerfomed(ActionEvent ae){
+        String msg= ae.getActionCommand(); // tells which text is been called
+        if(msg.equals("New Customer")){
+            new NewCustomer();
+        }
+        else if(msg.equals("Customer Details")){
+            
+        }
+        else if(msg.equals("Deposit Details")){
+            
+        }
+        else if(msg.equals("Calculate Bill")){
+            new CalculateBill();
+        }
+    }
+    
     public static void main(String[] args){
         new Project();
     }
