@@ -194,7 +194,7 @@ public class Project extends JFrame implements ActionListener {
             new NewCustomer();
         }
         else if(msg.equals("Customer Details")){
-            
+            new CustomerDetails();
         }
         else if(msg.equals("Deposit Details")){
             new DepositDetails();
