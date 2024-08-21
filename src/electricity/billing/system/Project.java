@@ -7,7 +7,10 @@ import java.awt.event.*;
 
 public class Project extends JFrame implements ActionListener {
     
-    Project(){
+    String atype, meter;
+    Project(String atype, String meter){
+        this.atype=atype;
+        this.meter=meter;
         setExtendedState(JFrame.MAXIMIZED_BOTH); //makes frame of entire height and width
         
         ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("icon/elect1.jpg"));
@@ -21,7 +24,7 @@ public class Project extends JFrame implements ActionListener {
         
         JMenu master=new JMenu("Master"); //creates menu bar items
         master.setForeground(Color.BLUE);
-        mb.add(master);
+        
         
         JMenuItem newcustomer=new JMenuItem("New Customer"); //menu items inside the main menu bar items
         newcustomer.setFont(new Font("monospaced", Font.PLAIN, 12));
@@ -73,7 +76,7 @@ public class Project extends JFrame implements ActionListener {
         
         JMenu info=new JMenu("Information"); //creates menu bar items
         info.setForeground(Color.RED);
-        mb.add(info);
+        
         
         
         JMenuItem updateinfo=new JMenuItem("Update Information"); //menu items inside the main menu bar items
@@ -94,13 +97,14 @@ public class Project extends JFrame implements ActionListener {
         Image image6=icon6.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         viewinfo.setIcon(new ImageIcon(image6));
         viewinfo.setMnemonic('V'); //for adding keyboard shortcuts
+        viewinfo.addActionListener(this);
         viewinfo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+V
         info.add(viewinfo);
         
         
         JMenu user=new JMenu("User"); //creates menu bar items
         user.setForeground(Color.BLUE);
-        mb.add(user);
+        
         
         
         JMenuItem paybill=new JMenuItem("Pay Bill"); //menu items inside the main menu bar items
@@ -127,7 +131,7 @@ public class Project extends JFrame implements ActionListener {
         
         JMenu report=new JMenu("Report"); //creates menu bar items
         report.setForeground(Color.RED);
-        mb.add(report);
+        
         
         
         JMenuItem generatebill=new JMenuItem("Generate Bill"); //menu items inside the main menu bar items
@@ -143,7 +147,7 @@ public class Project extends JFrame implements ActionListener {
         
         JMenu utility=new JMenu("Utility"); //creates menu bar items
         utility.setForeground(Color.BLUE);
-        mb.add(utility);
+        
         
         
         JMenuItem notepad=new JMenuItem("NotePad"); //menu items inside the main menu bar items
@@ -170,7 +174,7 @@ public class Project extends JFrame implements ActionListener {
         
         JMenu mexit=new JMenu("Exit"); //creates menu bar items
         mexit.setForeground(Color.RED);
-        mb.add(mexit);
+        
         
         
         JMenuItem exit=new JMenuItem("Exit"); //menu items inside the main menu bar items
@@ -183,12 +187,26 @@ public class Project extends JFrame implements ActionListener {
         exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+X
         mexit.add(exit);
         
+        if(atype.equals("Admin")){
+            mb.add(master);
+        }
+        else{
+            mb.add(info);
+            mb.add(report);
+            mb.add(user);
+        }
+        
+        
+        mb.add(utility);
+        mb.add(mexit);
+        
         setLayout(new FlowLayout());
         
         setVisible(true);
     }
     
-    public void actionPerfomed(ActionEvent ae){
+    
+    public void actionPerformed(ActionEvent ae){
         String msg= ae.getActionCommand(); // tells which text is been called
         if(msg.equals("New Customer")){
             new NewCustomer();
@@ -202,9 +220,12 @@ public class Project extends JFrame implements ActionListener {
         else if(msg.equals("Calculate Bill")){
             new CalculateBill();
         }
+        else if(msg.equals("View Information")){
+            new ViewInformation(meter);
+        }
     }
     
     public static void main(String[] args){
-        new Project();
+        new Project("", "");
     }
 }

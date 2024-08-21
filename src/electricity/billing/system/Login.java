@@ -85,11 +85,12 @@ public class Login extends JFrame implements ActionListener{
                 Conn c=new Conn();
                 String query="select * from login where username = '"+susername+"' and password = '"+spassword+"' and user = '"+user+"'";  //DDL query
                 
-                ResultSet re= c.s.executeQuery(query); //importing sql package, all the data after executing query will be stored in this resultset
+                ResultSet rs= c.s.executeQuery(query); //importing sql package, all the data after executing query will be stored in this resultset
                 
-                if(re.next()){ //if the entry matches 
+                if(rs.next()){ //if the entry matches 
+                    String meter= rs.getString("meter_no");
                     setVisible(false);
-                    new Project();
+                    new Project(user, meter);
                 }else{
                     JOptionPane.showMessageDialog(null, "Invalid Login"); //when the query doesnt execute or the entry doesnt matches
                     username.setText("");
