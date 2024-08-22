@@ -86,6 +86,7 @@ public class Project extends JFrame implements ActionListener {
         Image image5=icon5.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         updateinfo.setIcon(new ImageIcon(image5));
         updateinfo.setMnemonic('P'); //for adding keyboard shortcuts
+        updateinfo.addActionListener(this);
         updateinfo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+P
         info.add(updateinfo); //adding newcustomer menu item inside master field
         
@@ -222,6 +223,9 @@ public class Project extends JFrame implements ActionListener {
         }
         else if(msg.equals("View Information")){
             new ViewInformation(meter);
+        }
+        else if(msg.equals("Update Information")){
+            new UpdateInformation(meter);
         }
     }
     
