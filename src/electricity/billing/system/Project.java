@@ -115,6 +115,7 @@ public class Project extends JFrame implements ActionListener {
         Image image7=icon7.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         paybill.setIcon(new ImageIcon(image7));
         paybill.setMnemonic('R'); //for adding keyboard shortcuts
+        paybill.addActionListener(this);
         paybill.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+R
         user.add(paybill); //adding newcustomer menu item inside master field
         
@@ -253,6 +254,9 @@ public class Project extends JFrame implements ActionListener {
         else if(msg.equals("Exit")){
             setVisible(false);
             new Login();
+        }
+        else if(msg.equals("Pay Bill")){
+            new PayBill(meter);
         }
     }
     
