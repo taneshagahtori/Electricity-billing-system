@@ -144,6 +144,7 @@ public class Project extends JFrame implements ActionListener {
         Image image9=icon9.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
         generatebill.setIcon(new ImageIcon(image9));
         generatebill.setMnemonic('G'); //for adding keyboard shortcuts
+        generatebill.addActionListener(this);
         generatebill.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK)); //adding shortcut key ctrl+G
         report.add(generatebill); //adding newcustomer menu item inside master field
         
@@ -257,6 +258,9 @@ public class Project extends JFrame implements ActionListener {
         }
         else if(msg.equals("Pay Bill")){
             new PayBill(meter);
+        }
+        else if(msg.equals("Generate Bill")){
+            new GenerateBill(meter);
         }
     }
     
