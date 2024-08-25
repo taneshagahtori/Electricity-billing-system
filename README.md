@@ -9,14 +9,14 @@
 - **Billing History:** Access and manage past bills and payment records.
 - **Reporting:** Generate detailed reports with the option to export in various formats.
 - **User-Friendly UI:** Intuitive interface built with Java Swing and AWT.
-- **Database Integration:** Efficient data management using JDBC with MySQL or SQLite.
+- **Database Integration:** Efficient data management using JDBC with MySQL.
 
 ## Technologies Used
 
 - **Java:** Core language for application logic.
 - **Swing & AWT:** Frameworks for building the graphical user interface (GUI).
 - **JDBC:** API for connecting and executing queries with the database.
-- **MySQL/SQLite:** Relational database for storing application data.
+- **MySQL:** Relational database for storing application data.
 
 ## Contact
 For questions, suggestions, or feedback, feel free to reach out:
