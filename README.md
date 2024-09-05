@@ -1,5 +1,5 @@
 
-**PowerPay** is a desktop-based Java application designed to simplify and automate the process of electricity bill generation and management. Leveraging core Java concepts and frameworks like Swing, AWT for the user interface, and JDBC for database connectivity, PowerPay offers a robust and user-friendly solution for managing user authentication, billing, and reporting.  ///
+**PowerPay** is a desktop-based Java application designed to simplify and automate the process of electricity bill generation and management. Leveraging core Java concepts and frameworks like Swing, AWT for the user interface, and JDBC for database connectivity, PowerPay offers a robust and user-friendly solution for managing user authentication, billing, and reporting.
 
 ## Features
 
